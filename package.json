@@ -1,0 +1,32 @@
+{
+    "name": "nYtrans",
+    "license": "MIT",
+    "version": "0.0.1",
+    "author": "Emmanuel Odeke <odeke@ualberta.ca>",
+    "description": "Unofficial Node Yandex translator API",
+    "main": "lib/ytrans.js",
+    "engines": {
+        "node": "0.10.31"
+    },
+    "scripts": {
+        "test": "mocha --reporter=spec test/**/*-test.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:odeke-em/ytrans.js"
+    },
+    "private": false,
+    "homepage": "https://github.com/odeke-em/ytrans.js",
+    "bugs": {
+        "url": "https://github.com/odeke-em/ytrans.js"
+    },
+    "dependencies": {
+        "request": "2.42.0",
+        "underscore": "1.6.0"
+    },
+    "devDependencies": {
+        "mocha": "1.21.4",
+        "request": "2.42.0",
+        "underscore": "1.6.0"
+    }
+}

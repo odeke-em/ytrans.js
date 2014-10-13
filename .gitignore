@@ -1,0 +1,4 @@
+*.sw[op]
+*~
+*.so
+*node_modules
