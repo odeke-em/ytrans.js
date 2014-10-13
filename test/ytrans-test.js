@@ -147,6 +147,14 @@ describe("Invoking the API", function() {
         });
     });
 
+    it("Translate", function(done) {
+        this.yt.translate("hello", function(err, res) {
+            assert.equal(err, null, "No error expected!");
+            console.log(res);
+            done();
+        });
+    });
+
     it("Getting allowed translations", function(done) {
         this.yt.fetch_languages(function(err, res) {
             assert.equal(! err, true, "Not expecting errors back!");
