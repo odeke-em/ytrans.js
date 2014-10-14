@@ -1,14 +1,9 @@
 
-ytrans.js [![Build Status](https://travis-ci.org/odeke-em/ytrans.js.svg)](https://travis-ci.org/odeke-em/ytrans.js) [![Coverage Status](https://coveralls.io/repos/odeke-em/ytrans.js/badge.png)](https://coveralls.io/r/odeke-em/ytrans.js)
+ytrans.js  [![Build Status](https://travis-ci.org/odeke-em/ytrans.js.svg)](https://travis-ci.org/odeke-em/ytrans.js)  [![Coverage Status](https://coveralls.io/repos/odeke-em/ytrans.js/badge.png)](https://coveralls.io/r/odeke-em/ytrans.js)
 =========
 
-+ Unofficial NodeJS Yandex translation services API.
++ Unofficial NodeJS API for Yandex translation services.
 
-For use with other languages:
-+ A similar API that I'd recommend for Python can be found here:
+* A similar project that I'd recommend checking out for Python is:
 
-** * [yTrans](https://github.com/rkashapov/yandex-translator)
-
- It is built by: 
-        
-** * [Rustam Kashapov](https://github.com/rkashapov)
+   [yTrans](https://github.com/rkashapov/yandex-translator) by [Rustam Kashapov](https://github.com/rkashapov)

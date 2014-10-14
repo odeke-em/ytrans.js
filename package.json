@@ -3,7 +3,7 @@
     "license": "MIT",
     "version": "0.0.2",
     "author": "Emmanuel Odeke <odeke@ualberta.ca>",
-    "description": "Unofficial Node Yandex translator API",
+    "description": "Unofficial Yandex translation services API",
     "main": "lib/ytrans.js",
     "engines": {
         "node": "0.10.31"
@@ -18,7 +18,7 @@
     "private": false,
     "homepage": "https://github.com/odeke-em/ytrans.js",
     "bugs": {
-        "url": "https://github.com/odeke-em/ytrans.js"
+        "url": "https://github.com/odeke-em/ytrans.js/issues"
     },
     "dependencies": {
         "request": "2.42.0",
