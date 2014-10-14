@@ -12,6 +12,8 @@ ytrans.js  [![Build Status](https://travis-ci.org/odeke-em/ytrans.js.svg)](https
 Usage:
 ========
 
+* For more detailed usage, please visit [Detailed usage](https://github.com/odeke-em/ytrans.js/blob/master/test/ytrans-test.js), otherwise:
+
 ```
     var ytrans = require('ytrans.js');
     var yt = new ytrans();
@@ -22,6 +24,7 @@ Usage:
     }, function(err, translation) {
         ...;
     });
+```
 
 ```
     var ytk = new ytrans({api_key_path: API_KEY_PATH});
@@ -42,5 +45,3 @@ Usage:
         ...;
     });
 ```
-
-* [Detailed usage](https://github.com/odeke-em/ytrans.js/blob/master/test/ytrans-test.js)
