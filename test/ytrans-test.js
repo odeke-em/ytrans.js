@@ -26,6 +26,12 @@ describe("Initializer test", function() {
             done();
         });
     });
+
+    it("Testing for enumerability of key!", function(done) {
+        var yt = new ytrans();
+        assert.equal(yt.propertyIsEnumerable('api_key'), false, "api_key should be non-enumerable!");
+        done();
+    });
 });
 
 
