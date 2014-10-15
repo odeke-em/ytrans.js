@@ -1,7 +1,7 @@
 {
     "name": "ytrans.js",
     "license": "MIT",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "author": "Emmanuel Odeke <odeke@ualberta.ca>",
     "description": "Unofficial Yandex translation services API",
     "main": "lib/ytrans.js",
