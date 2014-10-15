@@ -12,14 +12,14 @@ describe("Initializer test", function() {
         });
     });
 
-    it("Initialization test async", function(done) {
+    it("Initialization test sync", function(done) {
         var yt = new ytrans();
         assert.notEqual(yt, null, 'Cannot be null');
         assert.equal(yt instanceof ytrans, true, 'Should be a yt instance');
         done();
     });
 
-    it("Initialization test sync", function(done) {
+    it("Initialization test async", function(done) {
         new ytrans(function(err, yt) {
             assert.notEqual(yt, null, 'Cannot be null');
             assert.equal(yt instanceof ytrans, true, 'Should be a yt instance');
@@ -83,14 +83,14 @@ describe("Key initialization test", function() {
     });
 
     it("Init with key from file", function(done) {
-        var key_result = this.yt.set_key_from_path('../test/api_key.json');
+        var key_result = this.yt.set_key_from_path('../test/.test_key.json');
         assert.notEqual(! key_result, true, "Expecting results back!");
         done();
     });
 
 
     it("Init with key from file async", function(done) {
-        this.yt.set_key_from_path('../test/api_key.json', function(err, res) {
+        this.yt.set_key_from_path('../test/.test_key.json', function(err, res) {
             console.log(err);
             done();
         });
@@ -127,7 +127,7 @@ describe("Handling error codes", function() {
 
 describe("Invoking the API", function() {
     before(function() {
-        this.yt = new ytrans({api_key_path: '../test/api_key.json'});
+        this.yt = new ytrans({api_key_path: '../test/.test_key.json'});
     });
 
 
@@ -141,11 +141,55 @@ describe("Invoking the API", function() {
     });
 
     it("Call API", function(done) {
-        this.yt.translate({text: ['translate', 'person'], lang: 'en-cs'}, function(err, res) {
+        this.yt.translate({text: ['translate', 'person'], lang: 'en-ru'}, function(err, res) {
             assert.equal(err, null, "No error expected back!");
             done();
         });
     });
+
+    it("# Non string default lang setting", function(done) {
+        var that = this;
+        that.yt.set_default_lang(12, function(err, validity) {
+            assert.equal(err instanceof Error, true, "Expecting an error back!");
+            assert.equal(validity, false, "Not a valid language!");
+            that.yt.set_default_lang({}, function(err2, validity2) {
+                assert.equal(err2 instanceof Error, true, "Expecting an error back!");
+                assert.equal(validity2, false, "Not a valid language!");
+                done();
+            });
+        });
+    });
+
+    it("# Non string default lang setting", function(done) {
+        var that = this;
+        that.yt.set_default_lang(12, function(err, success) {
+            assert.equal(err instanceof Error, true, "Expecting an error back!");
+            assert.equal(! success, true, "Not a valid language!");
+            that.yt.set_default_lang({}, function(err2, success2) {
+                assert.equal(err2 instanceof Error, true, "Expecting an error back!");
+                assert.equal(! success2, true, "Not a valid language!");
+                done();
+            });
+        });
+    });
+
+    it("Proper Default lang setting", function(done) {
+        var that = this;
+        that.yt.set_default_lang("es", function(err, success) {
+            assert.equal(err instanceof Error, false, "No error expected!");
+            assert.notEqual(! success, true, "This is a valid language!");
+            assert.equal(that.yt.get_default_lang(), "es", "'es' should have been set as default lang!");
+
+            that.yt.set_default_lang("sv", function(err2, success2) {
+                assert.equal(err2 instanceof Error, false, "No error expected!");
+                assert.notEqual(! success2, true, "This is a valid language!");
+                assert.equal(that.yt.get_default_lang(), "sv", "'sv' expected!");
+
+                done();
+            });
+        });
+    });
+
 
     it("Translate", function(done) {
         this.yt.translate("hello", function(err, res) {
@@ -214,7 +258,7 @@ describe("Invoking the API", function() {
 
 describe("Flavours of file translation", function() {
     before(function() {
-        this.yt = new ytrans({api_key_path: '../test/api_key.json'});
+        this.yt = new ytrans({api_key_path: '../test/.test_key.json'});
     });
 
     it("With null path", function(done) {
@@ -237,7 +281,7 @@ describe("Flavours of file translation", function() {
     it("Passing in params by object", function(done) {
         this.timeout(100000); // Translating massive files
         this.yt.translate_file({
-            path: __filename, lang: 'en-de'
+            path: __filename, lang: 'de'
         }, function(err, content) {
             console.log(content);
             assert.equal(err, null, "No errors expected!");

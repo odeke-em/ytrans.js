@@ -2,7 +2,9 @@
 ytrans.js  [![Build Status](https://travis-ci.org/odeke-em/ytrans.js.svg)](https://travis-ci.org/odeke-em/ytrans.js)  [![Coverage Status](https://coveralls.io/repos/odeke-em/ytrans.js/badge.png)](https://coveralls.io/r/odeke-em/ytrans.js)
 =========
 
-+ Unofficial NodeJS API for Yandex translation services.
++ Unofficial Node.js API for [Yandex translation services](http://translate.yandex.com).
+
++ You'll need an API key in order to access the translation service.
 
 * A similar project that I'd recommend checking out for Python is:
 
@@ -12,6 +14,8 @@ ytrans.js  [![Build Status](https://travis-ci.org/odeke-em/ytrans.js.svg)](https
 Usage:
 ========
 
+ + If you don't already have one, get an API key [here](http://api.yandex.com/key/form.xml?service=trnsl)
+
 * For more detailed usage, please visit [Detailed usage](https://github.com/odeke-em/ytrans.js/blob/master/test/ytrans-test.js), otherwise:
 
 ```
@@ -19,8 +23,23 @@ Usage:
     var yt = new ytrans();
     yt.set_key(API_KEY);
 
+    yt.translate('Hello there!', function(err, result) {
+        ...;
+    });
+```
+
+```
+    yt.set_default_lang("sk", function(err, success) {
+        if (err || ! success)
+            console.log("Failed to set the default language: look at results ", arguments);
+        else
+            console.log("Successfully set the default language!");
+    });
+```
+
+```  
     yt.translate({
-        text: ['good afternoon!', 'what is your name?'], lang: 'en-de'
+        text: ['кофе', 'Я знаю, французской и правда'], lang: 'de'
     }, function(err, translation) {
         ...;
     });
@@ -28,7 +47,7 @@ Usage:
 
 ```
     var ytk = new ytrans({api_key_path: API_KEY_PATH});
-    ytk.get_allowed_translations("uk", function(err, secondaries {
+    ytk.get_allowed_translations("uk", function(err, secondaries) {
         ...;
     });
 ```
@@ -42,6 +61,15 @@ Usage:
     });
 
     ytk1.is_allowed_transition("ru", "ch", function(err, validity) {
+        ...;
+    });
+```
+
+```
+    var catfish = new ytrans(API_KEY_PATH);
+    catfish.translate({
+        text: ["Je sais espagnol pour de vrai, je suis couché LOL"], lang: "es"
+    }, function(err, res) {
         ...;
     });
 ```
