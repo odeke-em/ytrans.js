@@ -29,7 +29,9 @@ describe("Initializer test", function() {
 
     it("Testing for enumerability of key!", function(done) {
         var yt = new ytrans();
-        assert.equal(yt.propertyIsEnumerable('api_key'), false, "api_key should be non-enumerable!");
+        assert.equal('api_secret' in yt, true, "api_secret is an attribute!");
+        assert.equal(yt.propertyIsEnumerable('api_secret'),
+                            false, "api_secret should be non-enumerable!");
         done();
     });
 });
