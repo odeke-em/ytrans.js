@@ -27,11 +27,15 @@ describe("Initializer test", function() {
         });
     });
 
-    it("Testing for enumerability of key!", function(done) {
+    it("Testing for enumerability of key and translate_uri!", function(done) {
         var yt = new ytrans();
         assert.equal('api_secret' in yt, true, "api_secret is an attribute!");
         assert.equal(yt.propertyIsEnumerable('api_secret'),
                             false, "api_secret should be non-enumerable!");
+
+        assert.equal('translate_uri' in yt, true, "translate_uri is an attribute!");
+        assert.equal(yt.propertyIsEnumerable('translate_uri'),
+                            false, "translate_uri should be non-enumerable!");
         done();
     });
 });
