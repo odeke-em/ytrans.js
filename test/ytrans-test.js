@@ -4,7 +4,7 @@ var settings = require("../lib/helpers");
 
 
 describe("Initializer test", function() {
-    it("With no key invoked async", function(done) {
+    it("# With no key invoked async", function(done) {
         new ytrans({api_key_path: __filename}, function(err, freshYTrans) {
             assert.equal(err instanceof Error, true, "Expecting an error back!");
             assert.equal(! freshYTrans, true, "Not expecting the object back!");
@@ -12,14 +12,14 @@ describe("Initializer test", function() {
         });
     });
 
-    it("Initialization test sync", function(done) {
+    it("# Initialization test sync", function(done) {
         var yt = new ytrans();
         assert.notEqual(yt, null, 'Cannot be null');
         assert.equal(yt instanceof ytrans, true, 'Should be a yt instance');
         done();
     });
 
-    it("Initialization test async", function(done) {
+    it("# Initialization test async", function(done) {
         new ytrans(function(err, yt) {
             assert.notEqual(yt, null, 'Cannot be null');
             assert.equal(yt instanceof ytrans, true, 'Should be a yt instance');
@@ -27,7 +27,7 @@ describe("Initializer test", function() {
         });
     });
 
-    it("Testing for enumerability of key and translate_uri!", function(done) {
+    it("# Testing for enumerability of key and translate_uri!", function(done) {
         var yt = new ytrans();
         assert.equal('api_secret' in yt, true, "api_secret is an attribute!");
         assert.equal(yt.propertyIsEnumerable('api_secret'),
@@ -46,7 +46,7 @@ describe("Result handler test", function() {
         this.yt = new ytrans();
     });
 
-    it("Init with no cb", function(done) {
+    it("# Init with no cb", function(done) {
         var r1 = this.yt.result_handler(null, null);
         assert.notEqual(r1, true, "Should return some content");
         assert.equal(typeof r1, 'object', "Should return an object!");
@@ -67,13 +67,13 @@ describe("Key initialization test", function() {
         this.yt = new ytrans();
     });
 
-    it("Initializing with directory", function(done) {
+    it("# Initializing with directory", function(done) {
         var result = this.yt.read_key("/");
         assert.equal(result.err instanceof Error, true, 'An error should be returned');
         done();
     });
 
-    it("Init with directory async", function(done) {
+    it("# Init with directory async", function(done) {
         this.yt.read_key("/", function(err, res) {
             assert.equal(err instanceof Error, true, 'An error should be returned');
             done();
@@ -81,27 +81,27 @@ describe("Key initialization test", function() {
     });
 
 
-    it("Init with invalid file sync", function(done) {
+    it("# Init with invalid file sync", function(done) {
         var result = this.yt.read_key(__filename);
         assert.equal(result.err instanceof Error, true, 'An error should be returned');
         done();
     });
 
-    it("Init with invalid file async", function(done) {
+    it("# Init with invalid file async", function(done) {
         this.yt.read_key(__filename, function(err, res) {
             assert.equal(err instanceof Error, true, 'An error should be returned');;
             done();
         });
     });
 
-    it("Init with key from file", function(done) {
+    it("# Init with key from file", function(done) {
         var key_result = this.yt.set_key_from_path('../test/.test_key.json');
         assert.notEqual(! key_result, true, "Expecting results back!");
         done();
     });
 
 
-    it("Init with key from file async", function(done) {
+    it("# Init with key from file async", function(done) {
         this.yt.set_key_from_path('../test/.test_key.json', function(err, res) {
             console.log(err);
             done();
@@ -115,7 +115,7 @@ describe("Handling error codes", function() {
         this.yt = new ytrans();
     });
 
-    it("Known error codes", function(done) {
+    it("# Known error codes", function(done) {
         assert.notEqual(! settings, true, "Expecting settings in");
         assert.notEqual(! settings.error_codes, true, "Expecting settings in");
         for (var status_code in settings.error_codes) {
@@ -126,7 +126,7 @@ describe("Handling error codes", function() {
     });
 
 
-    it("Unknown error codes", function(done) {
+    it("# Unknown error codes", function(done) {
         assert.notEqual(this.yt.status_code_to_err(200) instanceof Error,
                                             true, "A 200 shouldn't return an err!");
 
@@ -143,7 +143,7 @@ describe("Invoking the API", function() {
     });
 
 
-    it("Detect language", function(done) {
+    it("# Detect language", function(done) {
         this.yt.detect('přeložit', function(err, res) {
             console.log('lang detected', res, err);
             assert.notEqual(! res, true, "Expected a result back!");
@@ -152,14 +152,14 @@ describe("Invoking the API", function() {
         });
     });
 
-    it("Call API", function(done) {
+    it("# Call API", function(done) {
         this.yt.translate({text: ['translate', 'person'], lang: 'en-ru'}, function(err, res) {
             assert.equal(err, null, "No error expected back!");
             done();
         });
     });
 
-    it("# Non string default lang setting", function(done) {
+    it("# # Non string default lang setting", function(done) {
         var that = this;
         that.yt.set_default_lang(12, function(err, validity) {
             assert.equal(err instanceof Error, true, "Expecting an error back!");
@@ -172,7 +172,7 @@ describe("Invoking the API", function() {
         });
     });
 
-    it("# Non string default lang setting", function(done) {
+    it("# # Non string default lang setting", function(done) {
         var that = this;
         that.yt.set_default_lang(12, function(err, success) {
             assert.equal(err instanceof Error, true, "Expecting an error back!");
@@ -185,7 +185,7 @@ describe("Invoking the API", function() {
         });
     });
 
-    it("Proper Default lang setting", function(done) {
+    it("# Proper Default lang setting", function(done) {
         var that = this;
         that.yt.set_default_lang("es", function(err, success) {
             assert.equal(err instanceof Error, false, "No error expected!");
@@ -203,7 +203,7 @@ describe("Invoking the API", function() {
     });
 
 
-    it("Translate", function(done) {
+    it("# Translate", function(done) {
         this.yt.translate("hello", function(err, res) {
             assert.equal(err, null, "No error expected!");
             console.log(res);
@@ -211,14 +211,14 @@ describe("Invoking the API", function() {
         });
     });
 
-    it("Getting allowed translations", function(done) {
+    it("# Getting allowed translations", function(done) {
         this.yt.fetch_languages(function(err, res) {
             assert.equal(! err, true, "Not expecting errors back!");
             done();
         });
     });
 
-    it("Checking for validity of translations", function(done) {
+    it("# Checking for validity of translations", function(done) {
         var that = this;
         that.yt.fetch_languages(function() {
             var response = that.yt.get_allowed_translations("uk");
@@ -232,7 +232,7 @@ describe("Invoking the API", function() {
         });
     });
 
-    it("Checking for lang validity, compulsory miss then a cached miss", function(done) {
+    it("# Checking for lang validity, compulsory miss then a cached miss", function(done) {
         var that  = this;
         var test_lang = "FAKE";
         that.yt.is_valid_lang(test_lang, function(err, validity) {
@@ -249,7 +249,7 @@ describe("Invoking the API", function() {
     });
 
 
-    it("Checking for allowed transitions known", function(done) {
+    it("# Checking for allowed transitions known", function(done) {
         this.yt.is_allowed_transition("en", "uk", function(err, validity) {
             assert.equal(err, null, "No errors expected!");
             assert.equal(validity, true, "This is a known & acceptable transition!");
@@ -258,7 +258,7 @@ describe("Invoking the API", function() {
     });
 
 
-    it("Checking for feigned transitions", function(done) {
+    it("# Checking for feigned transitions", function(done) {
         this.yt.is_allowed_transition("en", "at", function(err, validity) {
             assert.equal(err, null, "No errors expected!");
             assert.equal(validity, false, "This is a fake transition!");
@@ -273,14 +273,14 @@ describe("Flavours of file translation", function() {
         this.yt = new ytrans({api_key_path: '../test/.test_key.json'});
     });
 
-    it("With null path", function(done) {
+    it("# With null path", function(done) {
         this.yt.translate_file(null, function(err, result) {
             assert.equal(err instanceof Error, true, "Expecting an error");
             done();
         });
     });
 
-    it("Passing just path into func", function(done) {
+    it("# Passing just path into func", function(done) {
         this.timeout(100000); // Translating massive files
         this.yt.translate_file(__filename, function(err, content) {
             console.log(content);
@@ -290,7 +290,7 @@ describe("Flavours of file translation", function() {
         });
     });
 
-    it("Passing in params by object", function(done) {
+    it("# Passing in params by object", function(done) {
         this.timeout(100000); // Translating massive files
         this.yt.translate_file({
             path: __filename, lang: 'de'
