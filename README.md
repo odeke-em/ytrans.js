@@ -1,5 +1,5 @@
 
-ytrans.js  [![Build Status](https://travis-ci.org/odeke-em/ytrans.js.svg)](https://travis-ci.org/odeke-em/ytrans.js)
+ytrans.js  [![Build Status](https://travis-ci.org/odeke-em/ytrans.js.svg)](https://travis-ci.org/odeke-em/ytrans.js) [![NPM](https://nodei.co/npm/ytrans.js.png)](https://npmjs.org/package/ytrans.js)
 =========
 
 + Unofficial Node.js API for [Yandex translation services](http://translate.yandex.com).
